@@ -11,7 +11,7 @@ class App extends Component {
   }
 
   clickeame() {
-    console.debug("me clickeaste")
+    console.log("me clickeaste")
   }
 
 
@@ -25,7 +25,7 @@ class App extends Component {
         <Listado 
                 amigos={amigos} 
                 enemigos={enemigos}
-                callback={this.clickeame}
+                test={this.clickeame}
         />
        
       </div>
