@@ -12,6 +12,7 @@ function Listado (props) {
                 { props.amigos.map((ami, index) => <li key={index}>{ami}</li>) }
             </ul>
             <button onClick={props.test}> clickame</button>
+            <button onClick={props.otro}> otro click</button>
         </div>
 
     );
