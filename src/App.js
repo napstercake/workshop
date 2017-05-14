@@ -5,55 +5,66 @@ import Listado from "./components/listado";
 
 class App extends Component {
 
-  constructor() {
-    super();
-    this.clickeame = this.clickeame.bind(this);
-    this.otroClick = this.otroClick.bind(this);
+  constructor(props, amigos) {
+    super(props);
+    this.state = {
+      value: '',
+      amigos: ['mm']
+    };
+    //this.amigos = amigos;
+
+    this.handleChange = this.handleChange.bind(this);
+    this.handleSubmit = this.handleSubmit.bind(this);
   }
 
-  clickeame() {
-    console.log("me clickeaste")
+  handleChange(event) {
+    this.setState({value: event.target.value});
   }
 
-  otroClick() {
-    console.log("otro click");
+  handleSubmit(event) {
+    console.log('A name of a friend was submitted: ' + this.state.value);
+    var joined = this.state.amigos.concat(this.state.value);
+    this.setState({
+      amigos: joined
+    });
+    console.log('>>> ' + this.state.amigos);
+    event.preventDefault();
   }
-
 
   render() {
 
-    const amigos = ["joe", "rodrigo", "isaac"];
-    const enemigos = ["julina", "apocalipsis"]
+    let amiguitos = this.state.amigos;
+    const Friends = amiguitos.map((amigos, index) => 
+      <li key={index}>
+        <span>{amigos}</span>
+        <button>A</button>
+        <button>B</button>
+      </li>
+    )
+
+    const FavoriteFriends = amiguitos.map((favoriteFriend, index) =>
+      <li key={index}>
+        {favoriteFriend}
+      </li>
+    )
 
     return (
       <div className="App">
         <div className="header">
-          <div>
-            <input type="text" placeholder="agregar amigo"/>
-            <button>Agregar</button>
-          </div>
+          
+          <form onSubmit={this.handleSubmit}>
+            <label>
+              <input type="text" value={this.state.value} onChange={this.handleChange} placeholder="Agregar amigo"/>
+            </label>
+            <input type="submit" value="Submit" />
+          </form>
+
           <div className="content">
-            <ul>
-              <li>
-                <span>amigoa a </span>
-                <button>add favorito</button>
-                <button>remove fav</button>
-              </li>
-              <li>
-                <span>amigoa b </span>
-                <button>add favorito</button>
-                <button>remove fav</button>
-              </li>
-              <li>
-                <span>amigoa c </span>
-                <button>add favorito</button>
-                <button>remove fav</button>
-              </li>
-            </ul>
+            <ul> {Friends} </ul>
           </div>
           <div className="footer">
             <h1>mis favoritos</h1>
-            amiga, abmioc, amigod
+            {FavoriteFriends}
           </div>
         </div>
        
