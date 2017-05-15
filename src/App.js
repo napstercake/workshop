@@ -18,6 +18,8 @@ class App extends Component {
 
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
+    this.add = this.add.bind(this);
+    this.remove = this.remove.bind(this);
   }
 
   handleChange(event) {
@@ -31,18 +33,35 @@ class App extends Component {
     event.preventDefault();
   }
 
+  add(i) {
+    console.log('add method ' + i);
+  }
+
+  remove(i) {
+    console.log('remove method ' + i);
+  }
+
   render() {
 
     let friendsList = this.state.friends;
 
-    const Friends = friendsList.map((friend, index) => 
-      <li key={index}>
-        <span>{friend.name}</span>
-        <button>A</button>
-        <button>B</button>
-      </li>
-    )
+    /**
+     * List of friends
+     */
+    const Friends = friendsList.map((friend, index) => {
+      return (
+        <li key={index}>
+          <span>{friend.name}</span>
+          <button onClick={() => this.add(index)} >A</button>
+          <button onClick={() => this.remove(index)}>B</button>
+        </li>
+      );
 
+    });
+
+    /**
+     * List of favorite friends
+    */
     const FavoriteFriends = friendsList.map(function(favoriteFriend, index) {
       if (favoriteFriend.isFavorite === 1) {
         return <li key={index}> {favoriteFriend.name} </li>
