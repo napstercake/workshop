@@ -5,13 +5,16 @@ import Listado from "./components/listado";
 
 class App extends Component {
 
-  constructor(props, amigos) {
-    super(props);
+  constructor() {
+    super();
     this.state = {
       value: '',
-      amigos: ['mm']
+      friends: [
+        {"name": "Ricardo", "isFavorite": 1},
+        {"name": "Juan", "isFavorite": 0},
+        {"name": "Alejandro", "isFavorite": 1}
+      ]
     };
-    //this.amigos = amigos;
 
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
@@ -22,31 +25,29 @@ class App extends Component {
   }
 
   handleSubmit(event) {
-    console.log('A name of a friend was submitted: ' + this.state.value);
-    var joined = this.state.amigos.concat(this.state.value);
     this.setState({
-      amigos: joined
+      friends: this.state.friends.concat({"name": this.state.value, "isFavorite": 0})
     });
-    console.log('>>> ' + this.state.amigos);
     event.preventDefault();
   }
 
   render() {
 
-    let amiguitos = this.state.amigos;
-    const Friends = amiguitos.map((amigos, index) => 
+    let friendsList = this.state.friends;
+
+    const Friends = friendsList.map((friend, index) => 
       <li key={index}>
-        <span>{amigos}</span>
+        <span>{friend.name}</span>
         <button>A</button>
         <button>B</button>
       </li>
     )
 
-    const FavoriteFriends = amiguitos.map((favoriteFriend, index) =>
-      <li key={index}>
-        {favoriteFriend}
-      </li>
-    )
+    const FavoriteFriends = friendsList.map(function(favoriteFriend, index) {
+      if (favoriteFriend.isFavorite === 1) {
+        return <li key={index}> {favoriteFriend.name} </li>
+      }
+    });
 
     return (
       <div className="App">
@@ -62,10 +63,12 @@ class App extends Component {
           <div className="content">
             <ul> {Friends} </ul>
           </div>
+         
           <div className="footer">
-            <h1>mis favoritos</h1>
+            <h1>Mis favoritos</h1>
             {FavoriteFriends}
           </div>
+         
         </div>
        
       </div>
