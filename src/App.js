@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import logo from './logo.svg';
 import './App.css';
 import Listado from "./components/listado";
+import update from 'immutability-helper';
 
 class App extends Component {
 
@@ -10,16 +11,17 @@ class App extends Component {
     this.state = {
       value: '',
       friends: [
-        {"name": "Ricardo", "isFavorite": 1},
-        {"name": "Juan", "isFavorite": 0},
-        {"name": "Alejandro", "isFavorite": 1}
+        {"name": "Ricardo", "isFavorite": 0},
+        {"name": "Juan", "isFavorite": 1},
+        {"name": "Alejandro", "isFavorite": 0}
       ]
     };
 
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
-    this.add = this.add.bind(this);
-    this.remove = this.remove.bind(this);
+    //this.add = this.add.bind(this);
+    //this.remove = this.remove.bind(this);
+    this.updateFavoriteFriend = this.updateFavoriteFriend.bind(this);
   }
 
   handleChange(event) {
@@ -33,13 +35,42 @@ class App extends Component {
     event.preventDefault();
   }
 
-  add(i) {
-    console.log('add method ' + i);
+  /**
+   * Update favorite friend
+   */
+  updateFavoriteFriend(id, isFavorite) {
+    var changedFriendFavoriteStatus = update(this.state.friends, {
+        [id] : {
+            isFavorite: { $set: (isFavorite) ? 1 : 0 }
+        }
+    });
+    this.setState({ friends: changedFriendFavoriteStatus });
   }
 
+
+  /**
+   * Add to favorite
+  
+  add(i) {
+    var changedFriendFavoriteStatus = update(this.state.friends, {
+        [i] : {
+            isFavorite: { $set: 1 }
+        }
+    });
+    this.setState({ friends: changedFriendFavoriteStatus });
+  } */
+
+  /**
+   * Remove from favorite list
+   
   remove(i) {
-    console.log('remove method ' + i);
-  }
+    var changedFriendFavoriteStatus = update(this.state.friends, {
+        [i] : {
+            isFavorite: { $set: 0 }
+        }
+    });
+    this.setState({ friends: changedFriendFavoriteStatus });
+  }*/
 
   render() {
 
@@ -52,8 +83,8 @@ class App extends Component {
       return (
         <li key={index}>
           <span>{friend.name}</span>
-          <button onClick={() => this.add(index)} >A</button>
-          <button onClick={() => this.remove(index)}>B</button>
+          <button onClick={() => this.updateFavoriteFriend(index, 1)} >A</button>
+          <button onClick={() => this.updateFavoriteFriend(index, 0)}>B</button>
         </li>
       );
 
@@ -66,7 +97,7 @@ class App extends Component {
       if (favoriteFriend.isFavorite === 1) {
         return <li key={index}> {favoriteFriend.name} </li>
       }
-    });
+    }, this);
 
     return (
       <div className="App">
