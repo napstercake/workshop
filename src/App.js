@@ -4,7 +4,12 @@ import './App.css';
 import Listado from "./components/listado";
 import update from 'immutability-helper';
 
-class App extends Component {
+// Components
+import FriendForm from './components/friend-form.component'
+import FriendsList from './components/friends-list.component'
+import FriendsListFavorites from './components/friends-list-favorites.component'
+
+export default class App extends Component {
 
   constructor() {
     super();
@@ -37,6 +42,9 @@ class App extends Component {
    * Update favorite friend
    */
   updateFavoriteFriend(id, isFavorite) {
+    console.log('id>: ' + id);
+    console.log('isFavorite>: ' + isFavorite);
+
     var changedFriendFavoriteStatus = update(this.state.friends, {
         [id] : {
             isFavorite: { $set: (isFavorite) ? 1 : 0 }
@@ -47,49 +55,40 @@ class App extends Component {
 
   render() {
 
-    let friendsList = this.state.friends;
-
-    /**
-     * List of friends
-     */
-    const Friends = friendsList.map((friend, index) => {
-      return (
-        <li key={index}>
-          <span>{friend.name}</span>
-          <button onClick={() => this.updateFavoriteFriend(index, 1)} >A</button>
-          <button onClick={() => this.updateFavoriteFriend(index, 0)}>B</button>
-        </li>
-      );
-
-    });
+    // let friendsList = this.state.friends;
 
     /**
      * List of favorite friends
-    */
+   
     const FavoriteFriends = friendsList.map(function(favoriteFriend, index) {
       if (favoriteFriend.isFavorite === 1) {
         return <li key={index}> {favoriteFriend.name} </li>
       }
-    }, this);
+    }, this); {FavoriteFriends} */
 
     return (
       <div className="App">
         <div className="header">
           
-          <form onSubmit={this.handleSubmit}>
-            <label>
-              <input type="text" value={this.state.value} onChange={this.handleChange} placeholder="Agregar amigo"/>
-            </label>
-            <input type="submit" value="Submit" />
-          </form>
+          <FriendForm 
+            onSubmit={this.handleSubmit} 
+            value={this.state.value}
+            onChange={this.handleChange}
+          />
 
           <div className="content">
-            <ul> {Friends} </ul>
+            <FriendsList 
+              list={this.state.friends}
+              add={this.updateFavoriteFriend}
+              
+            />
           </div>
          
           <div className="footer">
             <h1>Mis favoritos</h1>
-            {FavoriteFriends}
+            <FriendsListFavorites 
+              list={this.state.friends}
+            />
           </div>
          
         </div>
@@ -99,4 +98,4 @@ class App extends Component {
   }
 }
 
-export default App;
+
