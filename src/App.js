@@ -19,8 +19,6 @@ class App extends Component {
 
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
-    //this.add = this.add.bind(this);
-    //this.remove = this.remove.bind(this);
     this.updateFavoriteFriend = this.updateFavoriteFriend.bind(this);
   }
 
@@ -46,31 +44,6 @@ class App extends Component {
     });
     this.setState({ friends: changedFriendFavoriteStatus });
   }
-
-
-  /**
-   * Add to favorite
-  
-  add(i) {
-    var changedFriendFavoriteStatus = update(this.state.friends, {
-        [i] : {
-            isFavorite: { $set: 1 }
-        }
-    });
-    this.setState({ friends: changedFriendFavoriteStatus });
-  } */
-
-  /**
-   * Remove from favorite list
-   
-  remove(i) {
-    var changedFriendFavoriteStatus = update(this.state.friends, {
-        [i] : {
-            isFavorite: { $set: 0 }
-        }
-    });
-    this.setState({ friends: changedFriendFavoriteStatus });
-  }*/
 
   render() {
 
