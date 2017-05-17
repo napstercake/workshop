@@ -6,6 +6,10 @@ This is a little POC that I've started in order to know more about REACT and its
 
 This app save your list of friends with the option to add them into a new list, the favorite friend's list. The intention here is create more functionalities to have a better app and maybe the idea can change in the proccess of developing. Feel free to fork this project and add features.
 
+## Pre Requisites
+
+You need to install [node](https://nodejs.org/en/download/) and use your favorite IDE to edit the code.
+
 ## Available Scripts
 
 In the project directory, you can run:
