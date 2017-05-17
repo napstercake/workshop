@@ -11,6 +11,7 @@
     "react-dom": "^15.5.4"
   },
   "devDependencies": {
+    "jsdoc": "^3.4.3",
     "react-scripts": "0.9.5"
   },
   "scripts": {
