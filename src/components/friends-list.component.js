@@ -17,9 +17,12 @@ export default class FriendsList extends React.Component {
             <ul>
                 {friendsList.map((friend, index) => 
                     <li key={index}>
-                        <span>{friend.name}</span>  
-                        <button onClick={this.add} name={index} value="1">A</button>
-                        <button onClick={this.add} name={index} value="0">R</button>
+                        <span className="text">{friend.name}</span>  
+                        <span className="actions">
+                            <button onClick={this.add} name={index} value="1">A</button>
+                            <button onClick={this.add} name={index} value="0">R</button>
+                        </span>
+                        
                     </li> 
                 )}
             </ul>

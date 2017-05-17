@@ -1,21 +1,96 @@
-.App {
+.app {
+  position: absolute;
+  width: 500px;
+  top: 10%;
+  left: 50%;
+  margin-left: -250px;
   text-align: center;
+  border: thin solid #ffea34;
 }
+
+.clear {
+  clear: both;
+}
+
+/* Wrappers */
+.form-wrapper {
+  background-color: #363636;
+  padding-top: 1em;
+  padding-bottom: 1em;
+}
+
+.friend-list-wrapper {
+  border-top: thin solid #404040;
+  padding-top: 1em;
+  padding-bottom: 1em;
+  background-color: #363636;
+}
+
+.friend-list-wrapper ul {
+  width: 280px;
+  margin-left: auto;
+  margin-right: auto;
+}
+.friend-list-wrapper ul li {
+  color: #FFFFFF;
+  clear: both;
+}
+.friend-list-wrapper ul li span.text {
+  float: left;
+}
+
+.friend-list-wrapper ul li span.actions {
+  float: right;
+}
+
+
+.friend-list-favorite-wrapper {
+  background-color: #ffea34;
+  padding-top: 1.5em;
+  padding-bottom: 1.5em;
+}
+
+.friend-list-favorite-wrapper label {
+  font-weight: bold;
+  text-transform: uppercase;
+  margin-bottom: 1em;
+}
+
+
+/* Form */
+
+input[type="text"] {
+  border: thin solid #4c4c4c;
+  border-radius: .5em;
+  padding: .5em;
+  background-color: #4c4c4c;
+  color: #f4f4f4;
+  font-weight: bolder;
+  text-transform: uppercase;
+}
+
+input[type="submit"] {
+  margin-left: .5em;
+  border-radius: .5em;
+  padding: .5em;
+}
+
+ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  margin-top: 1em;
+}
+
+ul li {
+  padding-top: .25em;
+  padding-bottom: .25em;
+}
+
 
 .App-logo {
   animation: App-logo-spin infinite 20s linear;
   height: 80px;
-}
-
-.App-header {
-  background-color: #222;
-  height: 150px;
-  padding: 20px;
-  color: white;
-}
-
-.App-intro {
-  font-size: large;
 }
 
 @keyframes App-logo-spin {

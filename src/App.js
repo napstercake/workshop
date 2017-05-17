@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import logo from './logo.svg';
 import './App.css';
-import Listado from "./components/listado";
 import update from 'immutability-helper';
 
 // Components
@@ -16,7 +15,7 @@ export default class App extends Component {
     this.state = {
       value: '',
       friends: [
-        {"name": "Ricardo", "isFavorite": 0},
+        {"name": "Ricardo", "isFavorite": 1},
         {"name": "Juan", "isFavorite": 1},
         {"name": "Alejandro", "isFavorite": 0}
       ]
@@ -42,57 +41,45 @@ export default class App extends Component {
    * Update favorite friend
    */
   updateFavoriteFriend(id, isFavorite) {
-    console.log('id>: ' + id);
-    console.log('isFavorite>: ' + isFavorite);
-
     var changedFriendFavoriteStatus = update(this.state.friends, {
         [id] : {
-            isFavorite: { $set: (isFavorite) ? 1 : 0 }
+            isFavorite: { $set: (isFavorite == 1) ? 1 : 0 }
         }
     });
+    
     this.setState({ friends: changedFriendFavoriteStatus });
+    
   }
 
   render() {
 
-    // let friendsList = this.state.friends;
-
-    /**
-     * List of favorite friends
-   
-    const FavoriteFriends = friendsList.map(function(favoriteFriend, index) {
-      if (favoriteFriend.isFavorite === 1) {
-        return <li key={index}> {favoriteFriend.name} </li>
-      }
-    }, this); {FavoriteFriends} */
-
     return (
-      <div className="App">
-        <div className="header">
+      <div className="app">
           
-          <FriendForm 
-            onSubmit={this.handleSubmit} 
-            value={this.state.value}
-            onChange={this.handleChange}
-          />
-
-          <div className="content">
+          <div className="form-wrapper">
+            <FriendForm 
+              onSubmit={this.handleSubmit} 
+              value={this.state.value}
+              onChange={this.handleChange}
+            />
+          </div>
+          
+          <div className="friend-list-wrapper">
             <FriendsList 
               list={this.state.friends}
               add={this.updateFavoriteFriend}
-              
-            />
+            /><div className="clear"></div>
           </div>
-         
-          <div className="footer">
-            <h1>Mis favoritos</h1>
+
+          
+
+          <div className="friend-list-favorite-wrapper">
+            <label>Mis favoritos</label>
             <FriendsListFavorites 
               list={this.state.friends}
             />
           </div>
          
-        </div>
-       
       </div>
     );
   }

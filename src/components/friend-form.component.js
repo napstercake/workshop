@@ -10,10 +10,10 @@ export default class FriendForm extends React.Component {
                         type="text" 
                         value={this.props.value} 
                         onChange={this.props.onChange} 
-                        placeholder="Agregar amigo"
+                        placeholder="Your friend..."
                     />
                 </label>
-                <input type="submit" value="Submit" />
+                <input type="submit" value="Add" />
             </form>
         );
     }
