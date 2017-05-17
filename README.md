@@ -32,3 +32,11 @@ The build is minified and the filenames include the hashes.<br>
 Your app is ready to be deployed!
 
 See the section about [deployment](#deployment) for more information.
+
+
+## Posible enhancements
+
+The component <FriendsListFavorites> can be deleted and it would be better to use only one component. For this purpose the <FriendsList> component can be modified.
+
+## Author
+Ricardo Gonzales - (js.ricardo.gonzales@gmail.com)

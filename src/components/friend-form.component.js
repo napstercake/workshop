@@ -1,7 +1,15 @@
+// Libs
 import React from 'react';
 
+/**
+ * @class FriendForm
+ * @classdesc A class to represent the component <FriendForm>
+ */
 export default class FriendForm extends React.Component {
     
+    /**
+     * Render
+     */
     render() {
         return (
             <form onSubmit={this.props.onSubmit}>
