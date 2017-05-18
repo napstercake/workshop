@@ -1,5 +1,10 @@
 // Libs
 import React from 'react';
+import update from 'immutability-helper';
+
+// Components
+import Star from './star.component';
+                 
 
 /**
  * @class <FriendsList>
@@ -13,15 +18,15 @@ export default class FriendsList extends React.Component {
 
     constructor(){
         super();
-        this.action = this.action.bind(this);
+        this.chain = this.chain.bind(this);
     }
 
     /**
      * Takes 2 paramerters to update the array of friends
      * @param   {event} e to take the attributes values from the node.
      */
-    action(e) {
-        this.props.action(e.target.name, e.target.value);
+    chain(id, isFavorite) {
+        this.props.chain(id, isFavorite);
     }
     
     /**
@@ -36,11 +41,9 @@ export default class FriendsList extends React.Component {
                 {friendsList.map((friend, index) => 
                     <li key={index}>
                         <span className="text">{friend.name}</span>  
-                        <span className="actions">
-                            <button onClick={this.action} name={index} value="1">A</button>
-                            <button onClick={this.action} name={index} value="0">R</button>
-                        </span>
-                        
+                        <Star 
+                            update={this.chain} 
+                            idx={index}/>
                     </li> 
                 )}
             </ul>

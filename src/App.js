@@ -90,7 +90,7 @@ export default class App extends Component {
             <div className="friend-list-wrapper">
               <FriendsList 
                 list={this.state.friends}
-                action={this.updateFavoriteFriend}
+                chain={this.updateFavoriteFriend}
               /><div className="clear"></div>
             </div>
 
