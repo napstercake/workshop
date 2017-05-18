@@ -36,15 +36,20 @@ export default class FriendsList extends React.Component {
         
         // List of the friends setted from the main component
         const friendsList = this.props.list;
+
         return(
             <ul>
                 {friendsList.map((friend, index) => 
-                    <li key={index}>
-                        <span className="text">{friend.name}</span>  
-                        <Star 
-                            update={this.chain} 
-                            idx={index}/>
-                    </li> 
+                    (this.props.kind == "NL") ? 
+                        <li key={index}> 
+                            <span className="text">{friend.name}</span>
+                            <Star update={this.chain} idx={index}/>
+                        </li> 
+                    : (friend.isFavorite === 1) ? 
+                        <li key={index}>
+                            <span className="text">{friend.name}</span> 
+                        </li>
+                    : null
                 )}
             </ul>
         );

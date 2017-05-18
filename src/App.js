@@ -51,9 +51,13 @@ export default class App extends Component {
    * @param   {event} event
    */
   handleSubmit(event) {
-    this.setState({
-      friends: this.state.friends.concat({"name": this.state.value, "isFavorite": 0})
-    });
+    if (this.state.value != '') {
+      this.setState({
+        friends: this.state.friends.concat({"name": this.state.value, "isFavorite": 0})
+      });
+      this.state.value = '';
+    }
+    
     event.preventDefault();
   }
 
@@ -91,13 +95,15 @@ export default class App extends Component {
               <FriendsList 
                 list={this.state.friends}
                 chain={this.updateFavoriteFriend}
+                kind="NL"
               /><div className="clear"></div>
             </div>
 
             <div className="friend-list-favorite-wrapper">
               <label>Mis favoritos</label>
-              <FriendsListFavorites 
+              <FriendsList 
                 list={this.state.friends}
+                kind="FL"
               />
             </div>
         
