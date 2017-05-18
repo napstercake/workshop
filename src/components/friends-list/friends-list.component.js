@@ -3,7 +3,7 @@ import React from 'react';
 import update from 'immutability-helper';
 
 // Components
-import Star from './star.component';
+import Star from '../star/star.component';
                  
 
 /**

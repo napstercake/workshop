@@ -37,6 +37,11 @@ Your app is ready to be deployed!
 
 See the section about [deployment](#deployment) for more information.
 
+## About the componentes
+
+### Friend Form
+### Friends List
+### star
 
 ## Posible enhancements
 

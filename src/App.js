@@ -7,9 +7,8 @@ import update from 'immutability-helper';
 import './App.css';
 
 // Components
-import FriendForm from './components/friend-form.component'
-import FriendsList from './components/friends-list.component'
-import FriendsListFavorites from './components/friends-list-favorites.component'
+import FriendForm from './components/friend-form/friend-form.component'
+import FriendsList from './components/friends-list/friends-list.component'
 
 /** 
  * @class represent the main application.
