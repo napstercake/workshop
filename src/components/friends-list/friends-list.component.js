@@ -39,14 +39,14 @@ export default class FriendsList extends React.Component {
 
         return(
             <ul>
-                {friendsList.map((friend, index) => 
+                {friendsList.map((friend, id) => 
                     (this.props.kind == "NL") ? 
-                        <li key={index}> 
+                        <li key={id}> 
                             <span className="text">{friend.name}</span>
-                            <Star update={this.chain} idx={index}/>
+                            <Star update={this.chain} idx={id}/>
                         </li> 
                     : (friend.isFavorite === 1) ? 
-                        <li key={index}>
+                        <li key={id}>
                             <span className="text">{friend.name}</span> 
                         </li>
                     : null
